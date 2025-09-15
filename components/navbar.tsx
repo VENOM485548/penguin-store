@@ -18,6 +18,7 @@ const Navbar = async () => {
             </Link>
             <MainNav data={categories} />
             <NavbarActions />
+            
             </div>
         </Container>
     </div> );
