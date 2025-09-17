@@ -8,10 +8,10 @@ export interface ButtonProps
 }
 
 const variantClasses: Record<NonNullable<ButtonProps["variant"]>, string> = {
-  default: "bg-black text-white hover:opacity-75",
-  outline: "border border-gray-300 bg-white text-black hover:bg-gray-100",
-  ghost: "bg-transparent hover:bg-gray-100 text-black",
-  link: "bg-transparent underline text-black hover:text-gray-700",
+  default: "bg-black text-white hover:opacity-75 dark:bg-white dark:text-black dark:hover:opacity-80",
+  outline: "border border-gray-300 bg-white text-black hover:bg-gray-100 dark:border-neutral-700 dark:bg-neutral-900 dark:text-white dark:hover:bg-neutral-800",
+  ghost: "bg-transparent hover:bg-gray-100 text-black dark:text-white dark:hover:bg-neutral-800",
+  link: "bg-transparent underline text-black hover:text-gray-700 dark:text-white dark:hover:text-gray-300",
 };
 
 const sizeClasses: Record<NonNullable<ButtonProps["size"]>, string> = {
@@ -21,18 +21,9 @@ const sizeClasses: Record<NonNullable<ButtonProps["size"]>, string> = {
   icon: "h-10 w-10 p-0",
 };
 
-
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    {
-      className,
-      children,
-      disabled,
-      type = "button",
-      variant = "default",
-      size = "default",
-      ...props
-    },
+    { className, children, disabled, type = "button", variant = "default", size = "default", ...props },
     ref
   ) => {
     return (

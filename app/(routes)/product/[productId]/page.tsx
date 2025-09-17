@@ -6,11 +6,11 @@ import ProductList from "@/components/product-list";
 import Container from "@/components/ui/container";
 
 interface ProductPageProps {
-  params: Promise<{ productId: string }>; // 👈 mark params as a Promise
+  params: Promise<{ productId: string }>;
 }
 
 const ProductPage = async ({ params }: ProductPageProps) => {
-  const { productId } = await params; // 👈 await params
+  const { productId } = await params;
 
   const product = await getProduct(productId);
 
@@ -19,7 +19,7 @@ const ProductPage = async ({ params }: ProductPageProps) => {
   });
 
   return (
-    <div className="bg-white">
+    <div className="bg-white dark:bg-neutral-900">
       <Container>
         <div className="px-4 py-10 sm:px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
@@ -28,7 +28,7 @@ const ProductPage = async ({ params }: ProductPageProps) => {
               <Info data={product} />
             </div>
           </div>
-          <hr className="my-10" />
+          <hr className="my-10 border-gray-200 dark:border-neutral-700" />
           <ProductList title="Related Items" items={suggestedProducts} />
         </div>
       </Container>

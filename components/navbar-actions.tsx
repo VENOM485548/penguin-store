@@ -8,30 +8,34 @@ import { useRouter } from "next/navigation";
 import { ThemeToggle } from "./theme-toggle";
 
 const NavbarActions = () => {
+  const [isMounted, setIsMounted] = useState(false);
 
-    const [isMounted, SetisMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
-    useEffect(() => {
-        SetisMounted(true);
-    },[])
+  const router = useRouter();
+  const cart = useCart();
 
-    const router = useRouter();
+  if (!isMounted) {
+    return null;
+  }
 
-    const cart = useCart();
+  return (
+    <div className="ml-auto flex items-center gap-x-4">
+      {/* Theme Switch */}
+      <ThemeToggle />
 
-    if(!isMounted) {
-        return null;
-    }
-
-    return (
-        <div className="ml-auto flex items-center gap-x-4">
-            <ThemeToggle />
-            <Button onClick={() => router.push("/cart")} className="flex items-center rounded-full bg-black px-4 py-2">
-                <ShoppingBag size={20} color="white" />
-                <span className="ml-2 text-sm font-medium text-white">{cart.items.length}</span>
-            </Button>
-        </div>
-    )
-}
+      {/* Cart Button */}
+      <Button
+        onClick={() => router.push("/cart")}
+        className="flex items-center rounded-full bg-black text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200 px-4 py-2 transition"
+      >
+        <ShoppingBag size={20} />
+        <span className="ml-2 text-sm font-medium">{cart.items.length}</span>
+      </Button>
+    </div>
+  );
+};
 
 export default NavbarActions;
